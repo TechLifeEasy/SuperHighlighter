@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.js"></script>
+  <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+
+  <title>React App</title>
+</head>
+
+<script src="https://raw.githubusercontent.com/julmot/mark.js/master/dist/mark.min.js"></script>
+
+<style>
+  mark {
+    background: orange;
+    color: black;
+  }
+
+
+  span {
+
+
+    background-color: red;
+    color: black;
+  }
+</style>
+
+<body>
+
+  <div id="root"></div>
+
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores modi esse expedita obcaecati, eum reprehenderit
+  sequi laboriosam, in voluptate quis corporis velit a harum minus illo eaque, recusandae dolorum tenetur.
+  <h1>
+    To create a production bundle, use `npm run build` or `yarn build`.
+  </h1>
+
+</body>
+<!-- <script>
+
+  function selectHTML() {
+    try {
+      if (window.ActiveXObject) {
+        var c = document.selection.createRange();
+        return c.htmlText;
+      }
+
+      var nNd = document.createElement("span");
+
+
+      var userSelection = window.getSelection();
+      for (var i = 0; i < userSelection.rangeCount; i++) {
+        console.log('call')
+        highlightRange(userSelection.getRangeAt(i));
+      }
+      return 'done';
+    } catch (e) {
+      if (window.ActiveXObject) {
+        return document.selection.createRange();
+      } else {
+        return getSelection();
+      }
+    }
+  }
+  function highlightSelection() {
+
+
+  }
+
+ /* function highlightRange(range) {
+    var newNode = document.createElement("span");
+    newNode.setAttribute(
+      "style",
+      "background-color: yellow; display: inline;"
+    );
+    range.surroundContents(newNode);
+  }
+
+  function highlight(text) {
+    var inputText = document.querySelector("body");
+    var innerHTML = inputText.innerHTML;
+    var index = innerHTML.indexOf(text);
+    if (index >= 0) {
+      innerHTML = innerHTML.substring(0, index) + "<span class='highlight'>" + innerHTML.substring(index, index + text.length) + "</span>" + innerHTML.substring(index + text.length);
+      console.log(innerHTML);
+      inputText.innerHTML = innerHTML;
+    }
+
+
+
+
+    var InstantSearch = {
+
+      "highlight": function (container, highlightText) {
+        var internalHighlighter = function (options) {
+
+          var id = {
+            container: "container",
+            tokens: "tokens",
+            all: "all",
+            token: "token",
+            className: "className",
+            sensitiveSearch: "sensitiveSearch"
+          },
+            tokens = options[id.tokens],
+            allClassName = options[id.all][id.className],
+            allSensitiveSearch = options[id.all][id.sensitiveSearch];
+
+
+          function checkAndReplace(node, tokenArr, classNameAll, sensitiveSearchAll) {
+            var nodeVal = node.nodeValue, parentNode = node.parentNode,
+              i, j, curToken, myToken, myClassName, mySensitiveSearch,
+              finalClassName, finalSensitiveSearch,
+              foundIndex, begin, matched, end,
+              textNode, span, isFirst;
+
+            for (i = 0, j = tokenArr.length; i < j; i++) {
+              curToken = tokenArr[i];
+              myToken = curToken[id.token];
+              myClassName = curToken[id.className];
+              mySensitiveSearch = curToken[id.sensitiveSearch];
+
+              finalClassName = (classNameAll ? myClassName + " " + classNameAll : myClassName);
+
+              finalSensitiveSearch = (typeof sensitiveSearchAll !== "undefined" ? sensitiveSearchAll : mySensitiveSearch);
+
+              isFirst = true;
+              while (true) {
+                if (finalSensitiveSearch)
+                  foundIndex = nodeVal.indexOf(myToken);
+                else
+                  foundIndex = nodeVal.toLowerCase().indexOf(myToken.toLowerCase());
+
+                if (foundIndex < 0) {
+                  if (isFirst)
+                    break;
+
+                  if (nodeVal) {
+                    textNode = document.createTextNode(nodeVal);
+                    parentNode.insertBefore(textNode, node);
+                  } // End if (nodeVal)
+
+                  parentNode.removeChild(node);
+                  break;
+                } // End if (foundIndex < 0)
+
+                isFirst = false;
+
+
+                begin = nodeVal.substring(0, foundIndex);
+                matched = nodeVal.substr(foundIndex, myToken.length);
+
+                if (begin) {
+                  textNode = document.createTextNode(begin);
+                  parentNode.insertBefore(textNode, node);
+                } // End if (begin)
+
+                span = document.createElement("span");
+                span.className += finalClassName;
+                span.appendChild(document.createTextNode(matched));
+                parentNode.insertBefore(span, node);
+
+                nodeVal = nodeVal.substring(foundIndex + myToken.length);
+              } // Whend
+
+            } // Next i 
+          }; // End Function checkAndReplace 
+
+          function iterator(p) {
+            if (p === null) return;
+
+            var children = Array.prototype.slice.call(p.childNodes), i, cur;
+
+            if (children.length) {
+              for (i = 0; i < children.length; i++) {
+                cur = children[i];
+                if (cur.nodeType === 3) {
+                  checkAndReplace(cur, tokens, allClassName, allSensitiveSearch);
+                }
+                else if (cur.nodeType === 1) {
+                  iterator(cur);
+                }
+              }
+            }
+          }; // End Function iterator
+
+          iterator(options[id.container]);
+        } // End Function highlighter
+          ;
+
+
+        internalHighlighter(
+          {
+            container: container
+            , all:
+            {
+              className: "highlighter"
+            }
+            , tokens: [
+              {
+                token: highlightText
+                , className: "highlight"
+                , sensitiveSearch: false
+              }
+            ]
+          }
+        ); // End Call internalHighlighter 
+
+      } // End Function highlight
+
+    };
+    
+
+
+    function TestTextHighlighting(highlightText) {
+      var container = document.querySelector("body");
+      InstantSearch.highlight(container, highlightText);
+    }/*
+    
+    var context = document.qu/erySelector("body");
+    var instance = new Mark(context); 
+    instance.mark(text);
+    
+    
+  </script> -->
+  
+</html>
