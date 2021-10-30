@@ -25,7 +25,8 @@
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["./script/contentScript.js"]
+      "js": ["./script/contentScript.js"],
+      "run_at": "document_end"
     }
   ]
  ,

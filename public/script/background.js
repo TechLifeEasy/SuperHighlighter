@@ -1,12 +1,12 @@
 /*Crating the Context Menu*/
 
-chrome.contextMenus.create({
+window.chrome.contextMenus.create({
     id: "note-op",
     title: 'Add to Note',
     contexts: ["selection"]
 });
 
-chrome.contextMenus.onClicked.addListener(getData)
+window.chrome.contextMenus.onClicked.addListener(getData)
 
 
 function getData(information) {

@@ -1,6 +1,6 @@
 console.log('call me')
 
-chrome.runtime.onMessage.addListener(
+window.chrome.runtime.onMessage.addListener(
     function(message, messageSender, sendResponse) {
     console.log(message,messageSender);
     highlight(message.data)
