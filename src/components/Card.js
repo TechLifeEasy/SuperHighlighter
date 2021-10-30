@@ -1,15 +1,16 @@
 import { React, useState } from 'react';
 import { AiFillDelete, AiFillEdit, AiFillCopy, AiOutlineDownCircle, AiOutlineUpCircle } from 'react-icons/ai';
-import {UpdateUserWebData} from '../Api/notes'
+import {UpdateUserWebData , CreateUserWebData} from '../Api/notes'
 
 
 
 export const Card = ({ type, Note, index, User_displayName, AddData, webLink }) => {
     const [show, setShow] = useState(false);
-    const addToMy = (data) => {
+    const addToMy = () => {
 
-        //Add these in firebase of that user
-        console.log(data);
+        CreateUserWebData(webLink,Note)
+        .then((e)=>console.log('done'))
+        .catch((e)=>console.log(e))
     }
     // const toggle=()=>{
     //     setShow(!show)
@@ -61,7 +62,7 @@ export const Card = ({ type, Note, index, User_displayName, AddData, webLink }) 
                         type === "all" 
                         ? 
                         <>
-                        <button className='add' onClick={() => addToMy(User_id)}>Add to my notes</button></> 
+                        <button className='add' onClick={() => addToMy()}>Add to my notes</button></> 
                         :
                          null}
                     </> :
