@@ -9,7 +9,9 @@
     "activeTab",
     "http://*/*", 
     "https://*/*",
-    "contextMenus"
+    "contextMenus",
+    "background",
+    "notifications"
   ],
   "icons": {
       "512": "logo.png"
@@ -29,7 +31,8 @@
  ,
   "background":
     {
-      "scripts":["./script/background.js"]
+      "scripts":["./script/background.js"],
+      "persistent": false
     }
 
   

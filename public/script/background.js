@@ -1,14 +1,30 @@
 /*Crating the Context Menu*/
 
-// eslint-disable-next-line no-undef
 chrome.contextMenus.create({
-    id: "log-selection",
+    id: "note-op",
     title: 'Add to Note',
-    contexts: ["selection"],
-    onclick: getData
+    contexts: ["selection"]
 });
+
+chrome.contextMenus.onClicked.addListener(getData)
 
 
 function getData(information) {
-    console.log("Word " + information.selectionText + " was clicked.");
+    if (information.menuItemId === "note-op") {
+        // console.log("Word " + information.selectionText + " was clicked.");
+        console.log('send')
+        const data = information.selectionText;
+
+        chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+            const link = tabs[0].url;
+            const info = {
+                msg: 'Add_Note',
+                data: data,
+                link: link
+            }
+
+            console.log(info)
+            chrome.runtime.sendMessage({ info });
+        });
+    }
 }

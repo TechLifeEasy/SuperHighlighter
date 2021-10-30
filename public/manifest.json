@@ -9,7 +9,9 @@
     "activeTab",
     "http://*/*", 
     "https://*/*",
-    "contextMenus"
+    "contextMenus",
+    "background",
+    "notifications"
   ],
   "icons": {
       "512": "logo.png"
@@ -23,13 +25,15 @@
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["./script/contentScript.js"]
+      "js": ["./script/contentScript.js"],
+      "run_at": "document_end"
     }
   ]
  ,
   "background":
     {
-      "scripts":["./script/background.js"]
+      "scripts":["./script/background.js"],
+      "persistent": false
     }
 
   
