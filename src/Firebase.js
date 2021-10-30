@@ -1,6 +1,8 @@
-import { initializeApp } from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
+// v9 compat packages are API compatible with v8 code
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+
 
 
 
@@ -15,7 +17,7 @@ const firebaseConfig = {
 
 
 
-const app = initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
 const auth=app.auth();
 const db=app.firestore();
 
