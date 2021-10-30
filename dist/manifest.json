@@ -20,7 +20,8 @@
       "default_icon": "logo.png",
       "default_popup": "popup.html"
   },
-  "content_security_policy": "script-src 'self'; default-src 'self'",
+
+  "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
 
   "content_scripts": [
     {
