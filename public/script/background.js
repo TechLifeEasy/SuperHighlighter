@@ -8,6 +8,12 @@ window.chrome.contextMenus.create({
 
 window.chrome.contextMenus.onClicked.addListener(getData)
 
+// chrome.tabs.create({url: "/popup.html"}).then(() => {
+//     chrome.tabs.executeScript({
+//       code: `console.log('location:', window.location.href);`
+//     });
+// });
+
 
 function getData(information) {
     if (information.menuItemId === "note-op") {
@@ -28,3 +34,5 @@ function getData(information) {
         });
     }
 }
+
+

@@ -24,3 +24,10 @@ function highlight(text) {
 }
 
 highlight(`In the Back End Development and APIs Certification, you'll learn how to write back end apps with Node.js and npm (Node Package Manager). You'll also build web applications with the Express framework, and build a People Finder microservice with MongoDB and the Mongoose library.`)
+
+// const data=chrome.extension.getURL('./popup.html');
+
+// console.log.(data)
+
+// document.querySelector('body').append(data);
+// console.log('done')

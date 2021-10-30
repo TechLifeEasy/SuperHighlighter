@@ -42,7 +42,8 @@ const SingIn=({email,password})=>{
 
 const UserAuthState=(stateUpdate)=>{
 
-  
+
+    const user=auth.currentUser;
 
     auth.onAuthStateChanged( (user) => {
         if (user) {

@@ -12,18 +12,29 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import {SingUp} from '../Api/user';
 
 const theme = createTheme();
 
-export default function SignUp() {
+export default function SignUpPage({setRoute}) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
-    console.log({
+    const dataUser={
       email: data.get("email"),
       password: data.get("password"),
-    });
+      displayName: data.get('firstName')+' '+data.get('lastName'),
+    }
+
+    SingUp(dataUser)
+    // .then(()=>{
+
+      // setRoute("ShowNotes");
+
+    // })
+    // .catch((e)=>console.log(e))
+  
   };
 
   return (
@@ -101,9 +112,9 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <span className="a" onClick={()=>setRoute("SingIn")}>
                   Already have an account? Sign in
-                </Link>
+                </span>
               </Grid>
             </Grid>
           </Box>

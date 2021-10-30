@@ -3,7 +3,17 @@
   width: 25rem;
   margin: 0 auto;
   border: 1px solid;
+  height: 30rem;
+  overflow: auto;
+  padding-top:1rem;
+
 }
+
+.a{
+  color: rgb(11, 119, 219);
+  cursor: pointer;
+}
+
 
 .App-logo {
   height: 40vmin;
@@ -29,6 +39,76 @@
 
 .App-link {
   color: #61dafb;
+}
+.out_class{
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem;
+  justify-content: center;
+  align-items: center;
+}
+.card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  margin:0.7rem;
+  padding: 0.7rem;
+  width: 100%;
+}
+.list{
+  text-align: center;
+  padding: 0.4rem;
+  width: 90%;
+  
+}
+.points {
+  display:flex;
+  padding: 0.2rem;
+  flex-direction: column;
+  list-style: none;
+  margin: 0.4rem;
+  background-color: #d3dee0;
+  border-radius: 0.4rem;
+}
+.add{
+  background-color: black;
+  color:white;
+  padding: 0.4rem;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+.link{
+ background-color: black;
+  margin: 0.3rem;
+  text-decoration: none;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+.link:hover{
+  background-color: white;
+  color: black;
+}
+.top,.show-pop{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.show-pop{
+flex-direction: row;
+}
+.icons{
+  display: flex;
+  justify-content: center;
+  gap:1.2rem;
+  margin-top: 1.3rem;
+ cursor: pointer;
 }
 
 @keyframes App-logo-spin {

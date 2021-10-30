@@ -12,18 +12,21 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import {SingIn} from '../Api/user';
 
 const theme = createTheme();
 
-export default function SignIn() {
+export default function SignInPage({setRoute}) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
-    console.log({
+    const dataUser={
       email: data.get("email"),
       password: data.get("password"),
-    });
+    }
+
+    SingIn(dataUser)
   };
 
   return (
@@ -68,10 +71,10 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth
@@ -81,9 +84,9 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2">
+              <span className="a" onClick={()=>setRoute("SingUp")}>
                   {"Don't have an account? Sign Up"}
-                </Link>
+                </span>
               </Grid>
             </Grid>
           </Box>

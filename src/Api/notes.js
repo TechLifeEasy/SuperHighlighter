@@ -26,7 +26,7 @@ const GetNoteWebLinkUser = async ({ webLink }) => {
 // Get Note By User_id and Web_id
 const GetNote = async (webId, userId) => {
 
-    console.log(userId)
+    console.log(userId,webId)
 
     const noteRef = GetNoteRef();
     const snapshot = await noteRef.where('webId', '==', webId).where('User_id', '==', userId).get();
