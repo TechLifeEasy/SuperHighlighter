@@ -4,13 +4,16 @@ import {UpdateUserWebData , CreateUserWebData} from '../Api/notes'
 
 
 
-export const Card = ({ type, Note, index, User_displayName, AddData, webLink }) => {
+export const Card = ({ type, Note, index, User_displayName, AddData, webLink ,load}) => {
     const [show, setShow] = useState(false);
     const addToMy = () => {
+
+        load(true)
 
         CreateUserWebData(webLink,Note)
         .then((e)=>console.log('done'))
         .catch((e)=>console.log(e))
+        .finally(()=>load(false))
     }
     // const toggle=()=>{
     //     setShow(!show)
@@ -42,12 +45,15 @@ export const Card = ({ type, Note, index, User_displayName, AddData, webLink }) 
                                                 onClick={
                                                     () => {
 
+                                                        load(true);
+
                                                         UpdateUserWebData(webLink, point, false)
                                                             .then(() => {
 
                                                                 AddData()
                                                             })
                                                             .catch((e) => caches.log(e))
+                                                            .finally(()=>load(false)) 
                                                     }}
 
                                             />

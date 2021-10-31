@@ -2,7 +2,7 @@ import {auth,db} from '../Firebase';
 import firebase from 'firebase/compat/app';
 
 
-const SingUp=({email,password,displayName})=>{
+const SingUp=async ({email,password,displayName,load})=>{
 
     auth.createUserWithEmailAndPassword(email,password)
     .then((userCredential)=>{
@@ -11,6 +11,7 @@ const SingUp=({email,password,displayName})=>{
         })
     })
     .catch(e=>console.log(e))
+    .finally(()=>load(false))
 
 }
 
@@ -28,7 +29,7 @@ const Logout=()=>{
 }
 
 
-const SingIn=({email,password})=>{
+const SingIn=({email,password,load})=>{
 
     auth.signInWithEmailAndPassword(email,password)
     .then((data)=>{
@@ -36,7 +37,7 @@ const SingIn=({email,password})=>{
     })
     .catch((e)=>{
         console.log(e);
-    })
+    }).finally(()=>load(false))
 
 }
 

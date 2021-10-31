@@ -114,6 +114,7 @@ flex-direction: row;
 .down{
   background-color: black;
   color: white;
+  cursor: pointer;
   border: none;
   padding: 0.5rem;
   margin: 0.2rem;

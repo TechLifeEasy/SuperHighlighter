@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from './Card';
 import { GetNoteWebLinkUser, UpdateUserWebData, CreateUserWebData } from '../Api/notes';
+import Load from './Load';
+
 
 export const ShowNotes = ({ webLink }) => {
 
     const [data, setData] = useState(null);
+    const [Loading, setLoading] = React.useState(true);
 
     const AddData = () => {
+
+        setLoading(true)
         GetNoteWebLinkUser({ webLink })
             .then((res) => {
 
@@ -18,16 +23,20 @@ export const ShowNotes = ({ webLink }) => {
 
             }).catch((e) => {
 
+            }).finally(()=>{
+               setLoading(false)
             })
     }
 
 
-    const handleHighlight=()=>{
-        if(data==null) return;
-        chrome.runtime.sendMessage({ msg: "highlight",Note:data.Note },(res)=>{});
+    const handleHighlight = () => {
+        if (data == null) return;
+        chrome.runtime.sendMessage({ msg: "highlight", Note: data.Note }, (res) => { });
     }
 
     useEffect(() => {
+
+        setLoading(true)
 
         chrome.storage.sync.get(['data'], function (result) {
             UpdateUserWebData(result.data.link, result.data.data, true)
@@ -46,26 +55,36 @@ export const ShowNotes = ({ webLink }) => {
 
     return (
         <div className="out_class">
+
+<button
+
+onClick={handleHighlight}
+className='down'
+>highlight Notes</button>
             {
+
+            Loading 
+             &&
+            <Load></Load>
+
+
+            }
+            {
+
+                
                 data == null
                     ?
-                    <h1>Nothing Find</h1>
+                    <h1>Empty</h1>
 
                     :
 
                     <>
-                        <button onClick=
-                            {
-
-
-                                handleHighlight
-
-
-                            }
-                        >highlight</button>
+                       
 
                         <Card
                             {...data}
+
+                            load={setLoading}
 
                             webLink={webLink}
                             type="my"

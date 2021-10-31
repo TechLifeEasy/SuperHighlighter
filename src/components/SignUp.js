@@ -12,35 +12,39 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import {SingUp} from '../Api/user';
+import { SingUp } from '../Api/user';
+import Load from './Load';
 
 const theme = createTheme();
 
-export default function SignUpPage({setRoute}) {
+export default function SignUpPage({ setRoute }) {
+
+
+  const [Loading, setLoading] = React.useState(false);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
-    const dataUser={
+    const dataUser = {
       email: data.get("email"),
       password: data.get("password"),
-      displayName: data.get('firstName')+' '+data.get('lastName'),
+      displayName: data.get('firstName') + ' ' + data.get('lastName'),
+      load: setLoading
     }
 
+    setLoading(true)
     SingUp(dataUser)
-    // .then(()=>{
 
-      // setRoute("ShowNotes");
 
-    // })
-    // .catch((e)=>console.log(e))
-  
+
   };
 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+
         <Box
           sx={{
             marginTop: 8,
@@ -54,6 +58,9 @@ export default function SignUpPage({setRoute}) {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
+          {
+            Loading && <Load />
+          }
           <Box
             component="form"
             noValidate
@@ -79,7 +86,7 @@ export default function SignUpPage({setRoute}) {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
-                  
+
                 />
               </Grid>
               <Grid item xs={12}>
@@ -101,7 +108,7 @@ export default function SignUpPage({setRoute}) {
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                
+
                 />
               </Grid>
             </Grid>
@@ -114,7 +121,7 @@ export default function SignUpPage({setRoute}) {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <div className="a" onClick={()=>setRoute("SingIn")}>
+                <div className="a" onClick={() => setRoute("SingIn")}>
                   Already have an account? Sign in
                 </div>
               </Grid>

@@ -12,11 +12,13 @@ function App() {
 
   const [user, setUser] = useState(null);
   const [webLink, setWebLink] = useState('https://stackoverflow.com/questions/50692218/how-can-i-get-specific-document-data-from-firestore-querysnapshot');
-  const [route, setRoute] = useState('404')
+  const [route, setRoute] = useState('404');
+
+
 
 
   useEffect(() => {
-    UserAuthState(setUser,setRoute)
+    UserAuthState(setUser, setRoute)
 
     chrome.runtime.sendMessage({ msg: "webLink" }, function (response) {
       chrome.storage.sync.get(['link'], function (result) {
@@ -49,11 +51,6 @@ function App() {
 
       <ShowPage webLink={webLink} setRoute={setRoute} type={route}></ShowPage>
 
-      <button className='down' onClick={() => SingUp({email:"zeelprajapati321@gmail.com",password:"123212",displayName:"zeel"})} > SignUp </button>
-
-      <button className='down' onClick={() => SingIn({email:"zeelprajapati321@gmail.com",password:"123212"})} > SignIn </button>
-
-
     </div>
   );
 }
@@ -82,7 +79,7 @@ const ShowPage = ({ type, setRoute, webLink }) => {
   }
 
 
-  return <h1>404 Page</h1>
+  return <h1>Loading</h1>
 
 
 }
