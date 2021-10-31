@@ -5,7 +5,7 @@ import Load from './Load';
 
 
 
-export const ShowNotesAll = ({ webLink }) => {
+export const ShowNotesAll = ({ webLink, setRoute }) => {
 
     console.log('call')
 
@@ -54,21 +54,30 @@ export const ShowNotesAll = ({ webLink }) => {
                     ?
                     <h1>Empty</h1>
                     :
-                    data.map((value) => {
-                        return (
-                            <Card
-                                {...value}
+                    <>
+                        <h1>Find Right Note For You</h1>
+                        {
 
-                                webLink={webLink}
-                                type="my"
-                                load={setLoading}
-                                AddData={AddData}
+                            data.map((value) => {
+                                return (
+                                    <Card
+                                        {...value}
 
-                                type="all"
+                                        webLink={webLink}
+                                        type="my"
+                                        load={setLoading}
+                                        AddData={AddData}
 
-                            />
-                        );
-                    })}
+                                        setRoute={setRoute}
+
+                                        type="all"
+
+                                    />
+                                );
+                            })
+                        }
+                    </>
+            }
         </div>
 
     )

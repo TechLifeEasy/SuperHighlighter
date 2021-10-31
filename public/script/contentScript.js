@@ -1,48 +1,40 @@
-console.log('call me')
 
-window.chrome.runtime.onMessage.addListener(
-    function(message, messageSender, sendResponse) {
-    console.log(message,messageSender);
-    highlight(message.data)
-    }
-);
-
-// chrome.runtime.sendMessage({ zeel:"zeel is best"});
-
+const init = document.querySelector("body").innerHTML;
 
 
 function highlight(text) {
-    console.log('call the fun')
-    var inputText = document.querySelector("body");
-    var innerHTML = inputText.innerHTML;
-    var index = innerHTML.indexOf(text);
-    if (index >= 0) {
-      innerHTML = innerHTML.substring(0, index) + "<span class='highlight' style=\'background: yellow;\'>" + innerHTML.substring(index, index + text.length) + "</span>" + innerHTML.substring(index + text.length);
-      console.log(innerHTML);
-      inputText.innerHTML = innerHTML;
-}
+  console.log('call the fun')
+  var inputText = document.querySelector("body");
+  var innerHTML = inputText.innerHTML;
+  var index = innerHTML.indexOf(text);
+  if (index >= 0) {
+    innerHTML = innerHTML.substring(0, index) + "<span class='highlight' style=\'background: yellow; color:black;\'>" + innerHTML.substring(index, index + text.length) + "</span>" + innerHTML.substring(index + text.length);
+    console.log(innerHTML);
+    inputText.innerHTML = innerHTML;
+  }
 }
 
 
 
 chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
+  function (request, sender, sendResponse) {
 
-        console.log('do someting')
-      if (request.msg == "highlight") {
-        const list=request.Note;
+    console.log('do someting')
+    if (request.msg == "highlight") {
+      const list = request.Note;
+      console.log(list)
 
-        list.forEach(element => {
+      document.querySelector('body').innerHTML = init;
 
-            highlight(element);
-            
-        });
-      }
-});
+      list.forEach(element => {
+
+        highlight(element);
+
+      });
+    }
+  });
 
 
-// highlight(`In the Back End Development and APIs Certification, you'll learn how to write back end apps with Node.js and npm (Node Package Manager). You'll also build web applications with the Express framework, and build a People Finder microservice with MongoDB and the Mongoose library.`)
 
-// const data=chrome.extension.getURL('./popup.html');
 
 

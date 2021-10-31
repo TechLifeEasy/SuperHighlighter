@@ -30,23 +30,15 @@ function App() {
 
   }, [])
 
-  // useEffect(() => {
-  //   if (user != null) {
-  //     setRoute("ShowNotes")
-  //   } else {
-  //     setRoute("SingUp")
-  //   }
-  // }, [user])
-
 
 
 
 
   return (
     <div className="App">
-      Notes 👱
+
       {
-        user != null && <div>{user.displayName}</div>
+        user != null && <div> 👱 {user.displayName}</div>
       }
 
       <ShowPage webLink={webLink} setRoute={setRoute} type={route}></ShowPage>

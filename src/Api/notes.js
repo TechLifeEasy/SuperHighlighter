@@ -26,7 +26,7 @@ const GetNoteWebLinkUser = async ({ webLink }) => {
 // Get Note By User_id and Web_id
 const GetNote = async (webId, userId) => {
 
-    console.log(userId,webId)
+    console.log(userId, webId)
 
     const noteRef = GetNoteRef();
     const snapshot = await noteRef.where('webId', '==', webId).where('User_id', '==', userId).get();
@@ -108,7 +108,7 @@ const CreateWebSite = async (webLink) => {
 
 
 
-const CreateUserWebData = async (webLink,Note=[]) => {
+const CreateUserWebData = async (webLink, Note = []) => {
 
     const user = auth.currentUser;
 
@@ -130,24 +130,24 @@ const CreateUserWebData = async (webLink,Note=[]) => {
             User_displayName: user.displayName,
             User_id: user.uid,
             Note: Note
-        }    
+        }
         await GetNoteRef().add(data);
 
         console.log(data)
-        return;  
+        return;
     }
     const dataDic = snapshot.docs[0];
     const id = dataDic.id;
-    await GetNoteRef().doc(id).update({Note:Note});
+    await GetNoteRef().doc(id).update({ Note: Note });
     console.log('copy')
 
 
 }
 
 
-const UpdateUserWebData = async (webLink, data, type=null) => {
+const UpdateUserWebData = async (webLink, data, type = null) => {
 
-    if(type==null) return;
+    if (type == null) return;
 
     const user = auth.currentUser;
 
@@ -155,7 +155,7 @@ const UpdateUserWebData = async (webLink, data, type=null) => {
 
 
     if (!webId) {
-        webId=await CreateWebSite(webLink);
+        webId = await CreateWebSite(webLink);
     }
 
     console.log(webId)
@@ -165,7 +165,7 @@ const UpdateUserWebData = async (webLink, data, type=null) => {
 
 
     if (snapshot.empty) {
-        return CreateUserWebData(webLink,[data]);
+        return CreateUserWebData(webLink, [data]);
     }
     const dataDic = snapshot.docs[0];
     const id = dataDic.id;

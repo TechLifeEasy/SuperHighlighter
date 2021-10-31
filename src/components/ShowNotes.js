@@ -9,7 +9,7 @@ export const ShowNotes = ({ webLink }) => {
     const [data, setData] = useState(null);
     const [Loading, setLoading] = React.useState(true);
 
-    const AddData = () => {
+    const AddData = (ish = false) => {
 
         setLoading(true)
         GetNoteWebLinkUser({ webLink })
@@ -21,11 +21,15 @@ export const ShowNotes = ({ webLink }) => {
 
                 setData(res)
 
+
+
             }).catch((e) => {
 
-            }).finally(()=>{
-               setLoading(false)
+            }).finally(() => {
+                setLoading(false)
             })
+
+
     }
 
 
@@ -56,22 +60,27 @@ export const ShowNotes = ({ webLink }) => {
     return (
         <div className="out_class">
 
-<button
-
-onClick={handleHighlight}
-className='down'
->highlight Notes</button>
             {
 
-            Loading 
-             &&
-            <Load></Load>
+                data != null
+                &&
+                <button
+
+                    onClick={handleHighlight}
+                    className='down'
+                >highlight Notes</button>
+            }
+            {
+
+                Loading
+                &&
+                <Load></Load>
 
 
             }
             {
 
-                
+
                 data == null
                     ?
                     <h1>Empty</h1>
@@ -79,7 +88,9 @@ className='down'
                     :
 
                     <>
-                       
+
+                        <h1>Your Notes</h1>
+
 
                         <Card
                             {...data}
