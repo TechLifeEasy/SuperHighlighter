@@ -30,35 +30,31 @@ function App() {
 
   return (
     <div className="App">
-
       Notes 👱
-
       {
         user!=null && <div>{user.displayName}</div>
       }
 
       <ShowPage setRoute={setRoute} type={route}></ShowPage>
 
+      <button className='down' onClick={() => SingUp({email:"zeelprajapati321@gmail.com",password:"123212",displayName:"zeel"})} > SignUp </button>
+
+      <button className='down' onClick={() => SingIn({email:"zeelprajapati321@gmail.com",password:"123212"})} > SignIn </button>
+
+      <button className='down' onClick={Logout} > Log out </button>
 
 
-      <button onClick={() => SingUp({email:"zeelprajapati321@gmail.com",password:"123212",displayName:"zeel"})} > SingUp </button>
-
-      <button onClick={() => SingIn({email:"zeelprajapati321@gmail.com",password:"123212"})} > SingIn </button>
-
-      <button onClick={Logout} > Log out </button>
-
-
-      <button onClick={()=>GetNoteWebLinkUser({webLink:'https://www.freecodecamp.org/learn/back-end-development-and-apis/#managing-packages-with-npm'})} > GetNotes </button>
+      <button className='down' onClick={()=>GetNoteWebLinkUser({webLink:'https://www.freecodecamp.org/learn/back-end-development-and-apis/#managing-packages-with-npm'})} > GetNotes </button>
       
       
-      <button onClick={()=>GetNoteList('https://www.freecodecamp.org/learn/back-end-development-and-apis/#managing-packages-with-npm')} > GetList </button>
+      <button className='down' onClick={()=>GetNoteList('https://www.freecodecamp.org/learn/back-end-development-and-apis/#managing-packages-with-npm')} > GetList </button>
       
-      <button onClick={()=>CreateUserWebData('https://stackoverflow.com/questions/50692218/how-can-i-get-specific-document-data-from-firestore-querysnapshot')} > Create Connection </button>
+      <button className='down' onClick={()=>CreateUserWebData('https://stackoverflow.com/questions/50692218/how-can-i-get-specific-document-data-from-firestore-querysnapshot')} > Create Connection </button>
 
-      <button onClick={()=>UpdateUserWebData('https://stackoverflow.com/questions/50692218/how-can-i-get-specific-document-data-from-firestore-querysnapshot','my notes'+ Math.random()*10,true)} >
+      <button className='down' onClick={()=>UpdateUserWebData('https://stackoverflow.com/questions/50692218/how-can-i-get-specific-document-data-from-firestore-querysnapshot','my notes'+ Math.random()*10,true)} >
          Update Connection
           </button>
-      <button onClick={()=>UpdateUserWebData('https://stackoverflow.com/questions/50692218/how-can-i-get-specific-document-data-from-firestore-querysnapshot','my notes',false)} >
+      <button className='down' onClick={()=>UpdateUserWebData('https://stackoverflow.com/questions/50692218/how-can-i-get-specific-document-data-from-firestore-querysnapshot','my notes',false)} >
          Remove Connection
           </button>
     </div>
