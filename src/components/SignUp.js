@@ -48,7 +48,7 @@ export default function SignUpPage({setRoute}) {
             flexDirection: "column",
             alignItems: "center",
           }}>
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <Avatar sx={{ m: 1, bgcolor: "black" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -79,6 +79,7 @@ export default function SignUpPage({setRoute}) {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  
                 />
               </Grid>
               <Grid item xs={12}>
@@ -100,6 +101,7 @@ export default function SignUpPage({setRoute}) {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                
                 />
               </Grid>
             </Grid>
@@ -112,9 +114,9 @@ export default function SignUpPage({setRoute}) {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <span className="a" onClick={()=>setRoute("SingIn")}>
+                <div className="a" onClick={()=>setRoute("SingIn")}>
                   Already have an account? Sign in
-                </span>
+                </div>
               </Grid>
             </Grid>
           </Box>
