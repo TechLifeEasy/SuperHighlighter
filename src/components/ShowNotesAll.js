@@ -1,64 +1,64 @@
 import { Card } from './Card';
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { GetNoteList } from '../Api/notes';
 
 
 
 
-export const ShowNotesAll = () => {
+export const ShowNotesAll = ({ webLink }) => {
 
     console.log('call')
 
-    const [data,setData]=useState([]);
+    const [data, setData] = useState([]);
 
-    const AddData=()=>{
-        GetNoteList('https://stackoverflow.com/questions/50692218/how-can-i-get-specific-document-data-from-firestore-querysnapshot')
-        .then((res)=>{
+    const AddData = () => {
+        GetNoteList(webLink)
+            .then((res) => {
 
 
-            console.log(res);
+                console.log(res);
 
-            setData(res)
+                setData(res)
 
-        }).catch((e)=>{
+            }).catch((e) => {
 
-        })
+            })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
 
         AddData()
 
-    },[])
+    }, [])
 
 
 
     return (
-    
-    
-    <div className="out_class">
-        {
 
-            data.length==0
-            ?
-            <h1>Nothing Find</h1>
-            :
-           data.map((value)=>{
-            return(
-            <Card 
-            {...value} 
 
-            webLink={'https://stackoverflow.com/questions/50692218/how-can-i-get-specific-document-data-from-firestore-querysnapshot'} 
-            type="my"
-            AddData={AddData}
+        <div className="out_class">
+            {
 
-            type="all"
-            
-            />
-            );
-        })}
-    </div>
-    
+                data.length == 0
+                    ?
+                    <h1>Nothing Find</h1>
+                    :
+                    data.map((value) => {
+                        return (
+                            <Card
+                                {...value}
+
+                                webLink={webLink}
+                                type="my"
+                                AddData={AddData}
+
+                                type="all"
+
+                            />
+                        );
+                    })}
+        </div>
+
     )
 }
 

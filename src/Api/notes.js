@@ -155,15 +155,17 @@ const UpdateUserWebData = async (webLink, data, type=null) => {
 
 
     if (!webId) {
-        return;
+        webId=await CreateWebSite(webLink);
     }
+
+    console.log(webId)
 
 
     const snapshot = await GetNoteRef().where('webId', '==', webId).where('User_id', '==', user.uid).get();
 
 
     if (snapshot.empty) {
-        return {};
+        return CreateUserWebData(webLink,[data]);
     }
     const dataDic = snapshot.docs[0];
     const id = dataDic.id;

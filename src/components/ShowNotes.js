@@ -1,51 +1,79 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from './Card';
-import { GetNoteWebLinkUser } from '../Api/notes';
+import { GetNoteWebLinkUser, UpdateUserWebData, CreateUserWebData } from '../Api/notes';
 
-export const ShowNotes = () => {
+export const ShowNotes = ({ webLink }) => {
 
-    const [data,setData]=useState(null);
+    const [data, setData] = useState(null);
 
-    const AddData=()=>{
-        GetNoteWebLinkUser({webLink:'https://stackoverflow.com/questions/50692218/how-can-i-get-specific-document-data-from-firestore-querysnapshot'})
-        .then((res)=>{
+    const AddData = () => {
+        GetNoteWebLinkUser({ webLink })
+            .then((res) => {
 
-            if(JSON.stringify(res)=="{}") return;
+                if (JSON.stringify(res) == "{}") return;
 
-            console.log(res);
+                console.log(res);
 
-            setData(res)
+                setData(res)
 
-        }).catch((e)=>{
+            }).catch((e) => {
 
-        })
+            })
     }
 
 
-    useEffect(()=>{
+    const handleHighlight=()=>{
+        if(data==null) return;
+        chrome.runtime.sendMessage({ msg: "highlight",Note:data.Note },(res)=>{});
+    }
 
-        AddData();
-       
-    },[])
+    useEffect(() => {
+
+        chrome.storage.sync.get(['data'], function (result) {
+            UpdateUserWebData(result.data.link, result.data.data, true)
+                .then((res) => {
+                    AddData();
+                })
+        });
+        chrome.storage.sync.remove(['data'])
+
+        if (data == null) AddData();
+
+
+    }, [])
+
+
 
     return (
         <div className="out_class">
-        {
-        data==null
-        ?
-        <h1>Nothing Find</h1>
-        
-        :
-    
-            <Card 
-            {...data} 
-            
-            webLink={'https://stackoverflow.com/questions/50692218/how-can-i-get-specific-document-data-from-firestore-querysnapshot'} 
-            type="my"
-            AddData={AddData}
-            />
-        }
-       
+            {
+                data == null
+                    ?
+                    <h1>Nothing Find</h1>
+
+                    :
+
+                    <>
+                        <button onClick=
+                            {
+
+
+                                handleHighlight
+
+
+                            }
+                        >highlight</button>
+
+                        <Card
+                            {...data}
+
+                            webLink={webLink}
+                            type="my"
+                            AddData={AddData}
+                        />
+                    </>
+            }
+
         </div>
     )
 }

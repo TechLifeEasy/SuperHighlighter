@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { ShowNotes } from './ShowNotes';
 import {ShowNotesAll} from './ShowNotesAll';
 
-const Navbar = ({type, setRoute}) => {
+const Navbar = ({type, setRoute, webLink}) => {
     return (
         <div style={{marginTop:'1.4rem'}}>
                 <span className='link' onClick={()=>setRoute("ShowNotes")}>MyNotes</span>
@@ -11,9 +11,9 @@ const Navbar = ({type, setRoute}) => {
                 {
                     type=="ShowNotes"
                     ?
-                    <ShowNotes></ShowNotes>
+                    <ShowNotes webLink={webLink} ></ShowNotes>
                     :
-                    <ShowNotesAll></ShowNotesAll>
+                    <ShowNotesAll webLink={webLink}  ></ShowNotesAll>
                 }
         </div>
     )
