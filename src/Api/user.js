@@ -40,15 +40,18 @@ const SingIn=({email,password})=>{
 
 }
 
-const UserAuthState=(stateUpdate)=>{
+const UserAuthState=(stateUpdate,setRoute)=>{
 
-  
+
+    const user=auth.currentUser;
 
     auth.onAuthStateChanged( (user) => {
         if (user) {
           stateUpdate({user_id:user.uid,displayName:user.displayName});
+          setRoute("ShowNotes")
         } else{
             stateUpdate(null);
+            setRoute("SingUp")
         }
     })
 
